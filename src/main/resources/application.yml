@@ -1,0 +1,8 @@
+server:
+  port: 4595
+
+spring:
+  datasource:
+    url: jdbc:mysql://db-history:3306/history?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: cadett-splitters
+    password: cspwd
