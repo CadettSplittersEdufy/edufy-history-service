@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>se.frisk</groupId>
-    <artifactId>CadettSplittersHistory_Edufy</artifactId>
+    <artifactId>edufy-history-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>CadettSplittersHistory_Edufy</name>
     <description>CadettSplittersHistory_Edufy</description>
