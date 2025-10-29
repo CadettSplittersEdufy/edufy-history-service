@@ -1,8 +1,10 @@
-package se.frisk.cadettsplittershistory_edufy;
+package se.frisk.cadettsplittershistory_edufy.services;
 
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import se.frisk.cadettsplittershistory_edufy.repositories.HistoryRepository;
+import se.frisk.cadettsplittershistory_edufy.enteties.HistoryEntity;
 
 import java.time.Instant;
 import java.util.List;

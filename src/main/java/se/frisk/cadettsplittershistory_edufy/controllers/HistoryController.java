@@ -1,7 +1,9 @@
-package se.frisk.cadettsplittershistory_edufy;
+package se.frisk.cadettsplittershistory_edufy.controllers;
 
 
 import org.springframework.web.bind.annotation.*;
+import se.frisk.cadettsplittershistory_edufy.enteties.HistoryEntity;
+import se.frisk.cadettsplittershistory_edufy.services.HistoryService;
 
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class HistoryController {
 
     @PostMapping
     public HistoryEntity addHistory(@RequestParam Long userId, @RequestParam HistoryEntity.ItemType itemType,
-                                          @RequestParam Long itemId) {
+                                    @RequestParam Long itemId) {
         return historyService.addHistory(userId, itemType, itemId);
     }
 

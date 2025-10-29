@@ -1,4 +1,4 @@
-package se.frisk.cadettsplittershistory_edufy;
+package se.frisk.cadettsplittershistory_edufy.enteties;
 
 import jakarta.persistence.*;
 
