@@ -6,3 +6,6 @@ spring:
     url: jdbc:mysql://db-history:3306/history?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: cadett-splitters
     password: cspwd
+  jpa:
+    hibernate:
+      ddl-auto: update
