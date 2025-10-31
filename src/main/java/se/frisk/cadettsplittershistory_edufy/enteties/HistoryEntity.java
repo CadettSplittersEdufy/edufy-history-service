@@ -1,7 +1,6 @@
-package se.frisk.cadettsplittershistory_edufy.enteties;
+package se.frisk.cadettsplittershistory_edufy.entities;
 
 import jakarta.persistence.*;
-
 import java.time.Instant;
 
 @Entity
@@ -10,6 +9,8 @@ import java.time.Instant;
         @Index(name = "idx_history_item", columnList = "itemType, itemId")
 })
 public class HistoryEntity {
+
+    public enum ItemType { MUSIC, POD, VIDEO }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,43 +29,7 @@ public class HistoryEntity {
     @Column(nullable = false)
     private Instant playedAt = Instant.now();
 
-    public enum ItemType {MUSIC, POD, VIDEO}
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public ItemType getItemType() {
-        return itemType;
-    }
-
-    public void setItemType(ItemType itemType) {
-        this.itemType = itemType;
-    }
-
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
-    public Instant getPlayedAt() {
-        return playedAt;
-    }
-
-    public void setPlayedAt(Instant playedAt) {
-        this.playedAt = playedAt;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public HistoryEntity() {}
 
     public HistoryEntity(Long userId, ItemType itemType, Long itemId, Instant playedAt) {
         this.userId = userId;
@@ -73,6 +38,14 @@ public class HistoryEntity {
         this.playedAt = playedAt;
     }
 
-    public HistoryEntity() {
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
+    public ItemType getItemType() { return itemType; }
+    public void setItemType(ItemType itemType) { this.itemType = itemType; }
+    public Long getItemId() { return itemId; }
+    public void setItemId(Long itemId) { this.itemId = itemId; }
+    public Instant getPlayedAt() { return playedAt; }
+    public void setPlayedAt(Instant playedAt) { this.playedAt = playedAt; }
 }

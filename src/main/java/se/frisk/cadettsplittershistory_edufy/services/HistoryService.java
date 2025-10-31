@@ -1,10 +1,9 @@
 package se.frisk.cadettsplittershistory_edufy.services;
 
-
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import se.frisk.cadettsplittershistory_edufy.entities.HistoryEntity;
 import se.frisk.cadettsplittershistory_edufy.repositories.HistoryRepository;
-import se.frisk.cadettsplittershistory_edufy.enteties.HistoryEntity;
 
 import java.time.Instant;
 import java.util.List;
@@ -19,8 +18,8 @@ public class HistoryService {
     }
 
     public HistoryEntity addHistory(Long userId, HistoryEntity.ItemType itemType, Long itemId) {
-        HistoryEntity historyEntity = new HistoryEntity(userId,itemType, itemId, Instant.now());
-        return historyRepository.save(historyEntity);
+        var entity = new HistoryEntity(userId, itemType, itemId, Instant.now());
+        return historyRepository.save(entity);
     }
 
     public List<HistoryEntity> getRecentHistory(Long userId, int limit) {

@@ -1,9 +1,8 @@
 package se.frisk.cadettsplittershistory_edufy.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.data.domain.Pageable;
-import se.frisk.cadettsplittershistory_edufy.enteties.HistoryEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import se.frisk.cadettsplittershistory_edufy.entities.HistoryEntity;
 
 import java.util.List;
 
