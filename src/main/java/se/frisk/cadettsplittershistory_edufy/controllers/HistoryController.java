@@ -1,10 +1,14 @@
 package se.frisk.cadettsplittershistory_edufy.controllers;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
+import se.frisk.cadettsplittershistory_edufy.dto.AddHistoryResponse;
 import se.frisk.cadettsplittershistory_edufy.entities.HistoryEntity;
 import se.frisk.cadettsplittershistory_edufy.services.HistoryService;
 import se.frisk.cadettsplittershistory_edufy.dto.AddHistoryRequest;
+
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -17,12 +21,26 @@ public class HistoryController {
     public String test() { return "History service upp and running!"; }
 
     @PostMapping("/addHistory")
-    public HistoryEntity addHistory(@RequestBody @Valid AddHistoryRequest req) {
-        return historyService.addHistory(req.userId(), req.itemType(), req.itemId());
+    public ResponseEntity<AddHistoryResponse> addHistory(@RequestBody @Valid AddHistoryRequest req) {
+
+        HistoryEntity savedHistory = historyService.addHistory(req.userId(), req.itemType(), req.itemId());
+
+        var body = new AddHistoryResponse(
+                "History saved",
+                savedHistory.getId(),
+                savedHistory.getUserId(),
+                savedHistory.getItemType().name(),
+                savedHistory.getItemId(),
+                savedHistory.getPlayedAt()
+        );
+
+        return ResponseEntity
+                .created(URI.create("/api/history/"+savedHistory.getUserId() + "/" + savedHistory.getItemType().name()))
+                .body(body);
     }
 
     @GetMapping("/{userId}/{itemType}")
-    public List<HistoryEntity> getHistoryForType(@PathVariable String userId,      // ← String
+    public List<HistoryEntity> getHistoryForType(@PathVariable String userId,
                                                  @PathVariable HistoryEntity.ItemType itemType,
                                                  @RequestParam(defaultValue = "18") int limit) {
         return historyService.getHistoryByType(userId, itemType, limit);
