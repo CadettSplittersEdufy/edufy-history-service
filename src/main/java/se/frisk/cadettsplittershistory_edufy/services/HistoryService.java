@@ -36,4 +36,9 @@ public class HistoryService {
     public long getPlayCountForItem(HistoryEntity.ItemType itemType, Long itemId) {
         return historyRepository.countByItemTypeAndItemId(itemType, itemId);
     }
+
+    @Transactional
+    public long deleteHistoryForUser(String userId) {
+        return historyRepository.deleteByUserId(userId);
+    }
 }

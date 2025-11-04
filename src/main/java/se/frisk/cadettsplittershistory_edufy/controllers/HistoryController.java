@@ -7,9 +7,12 @@ import se.frisk.cadettsplittershistory_edufy.dto.AddHistoryResponse;
 import se.frisk.cadettsplittershistory_edufy.entities.HistoryEntity;
 import se.frisk.cadettsplittershistory_edufy.services.HistoryService;
 import se.frisk.cadettsplittershistory_edufy.dto.AddHistoryRequest;
+import org.springframework.http.HttpStatus;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/history")
@@ -39,10 +42,33 @@ public class HistoryController {
                 .body(body);
     }
 
-    @GetMapping("/{userId}/{itemType}")
+    @GetMapping("/historyByType/{userId}/{itemType}")
     public List<HistoryEntity> getHistoryForType(@PathVariable String userId,
                                                  @PathVariable HistoryEntity.ItemType itemType,
-                                                 @RequestParam(defaultValue = "18") int limit) {
+                                                 @RequestParam(defaultValue = "100") int limit) {
         return historyService.getHistoryByType(userId, itemType, limit);
+    }
+
+    @GetMapping("/userhistory/{userId}")
+    public List<HistoryEntity> getHistoryForUser(@PathVariable String userId,
+                                                 @RequestParam(defaultValue = "100") int limit) {
+        return  historyService.getRecentHistory(userId, limit);
+    }
+
+    @DeleteMapping("deleteUserHistory/{userId}")
+    public ResponseEntity<Map<String, Object>> deleteHistoryForUser(@PathVariable String userId) {
+        long deletedCount = historyService.deleteHistoryForUser(userId);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("message", "History deleted: ");
+        body.put("userId", userId);
+        body.put("deletedCount", deletedCount);
+
+        if (deletedCount == 0) {
+            body.put("message", "No history found for user");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+        }
+
+        return ResponseEntity.ok(body);
     }
 }

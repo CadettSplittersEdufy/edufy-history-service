@@ -10,4 +10,5 @@ public interface HistoryRepository extends JpaRepository<HistoryEntity, Long> {
     List<HistoryEntity> findByUserIdOrderByPlayedAtDesc(String userId, Pageable pageable);
     List<HistoryEntity> findByUserIdAndItemTypeOrderByPlayedAtDesc(String userId, HistoryEntity.ItemType itemType, Pageable pageable);
     long countByItemTypeAndItemId(HistoryEntity.ItemType itemType, Long itemId);
+    long deleteByUserId(String userId);
 }
