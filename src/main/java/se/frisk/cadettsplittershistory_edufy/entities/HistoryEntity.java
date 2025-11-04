@@ -16,22 +16,22 @@ public class HistoryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private Long userId;
+    @Column(name = "user_id", nullable = false)
+    private String userId;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(name = "item_type", nullable = false, length = 20)
     private ItemType itemType;
 
-    @Column(nullable = false)
+    @Column(name = "item_id", nullable = false)
     private Long itemId;
 
-    @Column(nullable = false)
+    @Column(name = "played_at", nullable = false)
     private Instant playedAt = Instant.now();
 
     public HistoryEntity() {}
 
-    public HistoryEntity(Long userId, ItemType itemType, Long itemId, Instant playedAt) {
+    public HistoryEntity(String userId, ItemType itemType, Long itemId, Instant playedAt) {
         this.userId = userId;
         this.itemType = itemType;
         this.itemId = itemId;
@@ -40,8 +40,8 @@ public class HistoryEntity {
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
     public ItemType getItemType() { return itemType; }
     public void setItemType(ItemType itemType) { this.itemType = itemType; }
     public Long getItemId() { return itemId; }
