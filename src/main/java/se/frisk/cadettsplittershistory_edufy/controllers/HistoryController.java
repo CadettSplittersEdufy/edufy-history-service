@@ -17,6 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/history")
 public class HistoryController {
+    
     private final HistoryService historyService;
     public HistoryController(HistoryService historyService) { this.historyService = historyService; }
 
