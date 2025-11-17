@@ -1,31 +1,77 @@
--- User A: gillar mest MUSIC (rock/pop)
-INSERT INTO history_entity (user_id, item_type, item_id, played_at) VALUES
-                                                                        ('userA', 'MUSIC', 'song_rock_01', '2025-11-01T10:00:00Z'),
-                                                                        ('userA', 'MUSIC', 'song_pop_01',  '2025-11-01T10:30:00Z'),
-                                                                        ('userA', 'MUSIC', 'song_rock_02', '2025-11-01T11:00:00Z'),
-                                                                        ('userA', 'MUSIC', 'song_rock_03', '2025-11-01T12:15:00Z'),
-                                                                        ('userA', 'POD',   'pod_tech_01',  '2025-11-01T13:00:00Z'),
-                                                                        ('userA', 'MUSIC', 'song_pop_02',  '2025-11-02T09:00:00Z'),
-                                                                        ('userA', 'MUSIC', 'song_rock_04', '2025-11-02T10:00:00Z');
+INSERT INTO history (user_id, item_type, item_id, played_at) VALUES
+                                                                 ('userA', 'MUSIC', 1001, '2025-11-01 10:00:00'),
+                                                                 ('userA', 'MUSIC', 1002, '2025-11-01 10:30:00'),
+                                                                 ('userA', 'MUSIC', 1003, '2025-11-01 11:00:00'),
+                                                                 ('userA', 'MUSIC', 1004, '2025-11-01 12:15:00'),
+                                                                 ('userA', 'POD',   2001, '2025-11-01 13:00:00'),
+                                                                 ('userA', 'MUSIC', 1005, '2025-11-02 09:00:00'),
+                                                                 ('userA', 'MUSIC', 1006, '2025-11-02 10:00:00'),
+                                                                 ('userA', 'MUSIC', 1007, '2025-11-02 11:00:00'),
+                                                                 ('userA', 'MUSIC', 1008, '2025-11-03 08:30:00'),
+                                                                 ('userA', 'MUSIC', 1009, '2025-11-03 09:15:00'),
+                                                                 ('userA', 'POD',   2002, '2025-11-03 10:00:00');
 
--- User B: blandat MUSIC + POD
-INSERT INTO history_entity (user_id, item_type, item_id, played_at) VALUES
-                                                                        ('userB', 'POD',   'pod_crime_01', '2025-11-01T08:00:00Z'),
-                                                                        ('userB', 'POD',   'pod_crime_02', '2025-11-01T09:00:00Z'),
-                                                                        ('userB', 'MUSIC', 'song_pop_03',  '2025-11-01T09:30:00Z'),
-                                                                        ('userB', 'MUSIC', 'song_pop_04',  '2025-11-01T10:15:00Z'),
-                                                                        ('userB', 'POD',   'pod_tech_02',  '2025-11-01T11:45:00Z');
 
--- User C: mest VIDEO
-INSERT INTO history_entity (user_id, item_type, item_id, played_at) VALUES
-                                                                        ('userC', 'VIDEO', 'video_coding_01', '2025-11-01T07:30:00Z'),
-                                                                        ('userC', 'VIDEO', 'video_coding_02', '2025-11-01T08:15:00Z'),
-                                                                        ('userC', 'VIDEO', 'video_music_01',  '2025-11-01T09:45:00Z'),
-                                                                        ('userC', 'MUSIC', 'song_ambient_01', '2025-11-01T10:30:00Z');
+INSERT INTO history (user_id, item_type, item_id, played_at) VALUES
+                                                                 ('userB', 'POD',   2003, '2025-11-01 08:00:00'),
+                                                                 ('userB', 'POD',   2004, '2025-11-01 09:00:00'),
+                                                                 ('userB', 'MUSIC', 1010, '2025-11-01 09:30:00'),
+                                                                 ('userB', 'MUSIC', 1011, '2025-11-01 10:15:00'),
+                                                                 ('userB', 'POD',   2005, '2025-11-01 11:45:00'),
+                                                                 ('userB', 'MUSIC', 1012, '2025-11-02 08:15:00'),
+                                                                 ('userB', 'MUSIC', 1013, '2025-11-02 09:45:00'),
+                                                                 ('userB', 'POD',   2006, '2025-11-02 11:00:00'),
+                                                                 ('userB', 'POD',   2007, '2025-11-03 07:30:00'),
+                                                                 ('userB', 'MUSIC', 1014, '2025-11-03 08:00:00');
 
--- User D: lite blandat, bra för test av rekommendationer
-INSERT INTO history_entity (user_id, item_type, item_id, played_at) VALUES
-                                                                        ('userD', 'MUSIC', 'song_rock_05',  '2025-11-01T12:00:00Z'),
-                                                                        ('userD', 'MUSIC', 'song_rock_06',  '2025-11-01T12:30:00Z'),
-                                                                        ('userD', 'POD',   'pod_history_01','2025-11-01T13:15:00Z'),
-                                                                        ('userD', 'VIDEO', 'video_funny_01','2025-11-01T14:00:00Z');
+
+INSERT INTO history (user_id, item_type, item_id, played_at) VALUES
+                                                                 ('userC', 'VIDEO', 3001, '2025-11-01 07:30:00'),
+                                                                 ('userC', 'VIDEO', 3002, '2025-11-01 08:15:00'),
+                                                                 ('userC', 'VIDEO', 3003, '2025-11-01 09:45:00'),
+                                                                 ('userC', 'MUSIC', 1015, '2025-11-01 10:30:00'),
+                                                                 ('userC', 'VIDEO', 3004, '2025-11-02 09:00:00'),
+                                                                 ('userC', 'VIDEO', 3005, '2025-11-02 10:30:00'),
+                                                                 ('userC', 'VIDEO', 3006, '2025-11-02 11:15:00'),
+                                                                 ('userC', 'POD',   2008, '2025-11-02 12:00:00'),
+                                                                 ('userC', 'VIDEO', 3007, '2025-11-03 08:10:00'),
+                                                                 ('userC', 'VIDEO', 3008, '2025-11-03 09:20:00');
+
+
+INSERT INTO history (user_id, item_type, item_id, played_at) VALUES
+                                                                 ('userD', 'MUSIC', 1016, '2025-11-01 12:00:00'),
+                                                                 ('userD', 'MUSIC', 1017, '2025-11-01 12:30:00'),
+                                                                 ('userD', 'POD',   2009, '2025-11-01 13:15:00'),
+                                                                 ('userD', 'VIDEO', 3009, '2025-11-01 14:00:00'),
+                                                                 ('userD', 'MUSIC', 1018, '2025-11-02 09:00:00'),
+                                                                 ('userD', 'VIDEO', 3010, '2025-11-02 10:00:00'),
+                                                                 ('userD', 'POD',   2010, '2025-11-02 11:30:00'),
+                                                                 ('userD', 'MUSIC', 1019, '2025-11-03 08:45:00'),
+                                                                 ('userD', 'VIDEO', 3011, '2025-11-03 09:30:00');
+
+
+INSERT INTO history (user_id, item_type, item_id, played_at) VALUES
+                                                                 ('userE', 'POD',   2011, '2025-11-01 07:00:00'),
+                                                                 ('userE', 'POD',   2012, '2025-11-01 08:00:00'),
+                                                                 ('userE', 'POD',   2013, '2025-11-01 09:00:00'),
+                                                                 ('userE', 'POD',   2014, '2025-11-01 10:00:00'),
+                                                                 ('userE', 'MUSIC', 1020, '2025-11-01 11:00:00'),
+                                                                 ('userE', 'POD',   2015, '2025-11-02 07:30:00'),
+                                                                 ('userE', 'POD',   2016, '2025-11-02 08:30:00'),
+                                                                 ('userE', 'POD',   2017, '2025-11-02 09:30:00'),
+                                                                 ('userE', 'POD',   2018, '2025-11-03 07:45:00'),
+                                                                 ('userE', 'POD',   2019, '2025-11-03 09:00:00');
+
+
+
+INSERT INTO history (user_id, item_type, item_id, played_at) VALUES
+                                                                 ('userF', 'MUSIC', 1021, '2025-11-01 06:30:00'),
+                                                                 ('userF', 'VIDEO', 3012, '2025-11-01 07:00:00'),
+                                                                 ('userF', 'POD',   2020, '2025-11-01 07:30:00'),
+                                                                 ('userF', 'MUSIC', 1022, '2025-11-01 08:00:00'),
+                                                                 ('userF', 'VIDEO', 3013, '2025-11-01 08:30:00'),
+                                                                 ('userF', 'MUSIC', 1023, '2025-11-02 09:00:00'),
+                                                                 ('userF', 'POD',   2021, '2025-11-02 09:30:00'),
+                                                                 ('userF', 'VIDEO', 3014, '2025-11-02 10:00:00'),
+                                                                 ('userF', 'MUSIC', 1024, '2025-11-03 10:15:00'),
+                                                                 ('userF', 'VIDEO', 3015, '2025-11-03 11:00:00');
