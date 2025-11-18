@@ -26,10 +26,16 @@ public class HistoryService {
     }
 
     public List<HistoryEntity> getRecentHistory(String userId, int limit) {
+        if (limit <= 0) {
+            throw new IllegalArgumentException("limit must be greater than 0");
+        }
         return historyRepository.findByUserIdOrderByPlayedAtDesc(userId, PageRequest.of(0, limit));
     }
 
     public List<HistoryEntity> getHistoryByType(String userId, HistoryEntity.ItemType itemType, int limit) {
+        if (limit <= 0) {
+            throw new IllegalArgumentException("limit must be greater than 0");
+        }
         return historyRepository.findByUserIdAndItemTypeOrderByPlayedAtDesc(userId, itemType, PageRequest.of(0, limit));
     }
 
