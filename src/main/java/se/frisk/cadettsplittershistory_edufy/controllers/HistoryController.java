@@ -3,11 +3,11 @@ package se.frisk.cadettsplittershistory_edufy.controllers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
+import se.frisk.cadettsplittershistory_edufy.exceptions.ResourceNotFoundException;
 import se.frisk.cadettsplittershistory_edufy.dto.AddHistoryResponse;
 import se.frisk.cadettsplittershistory_edufy.entities.HistoryEntity;
 import se.frisk.cadettsplittershistory_edufy.services.HistoryService;
 import se.frisk.cadettsplittershistory_edufy.dto.AddHistoryRequest;
-import org.springframework.http.HttpStatus;
 
 import java.net.URI;
 import java.util.HashMap;
@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/history")
+@RequestMapping("/history")
 public class HistoryController {
-    
+
     private final HistoryService historyService;
     public HistoryController(HistoryService historyService) { this.historyService = historyService; }
 
@@ -56,19 +56,18 @@ public class HistoryController {
         return  historyService.getRecentHistory(userId, limit);
     }
 
-    @DeleteMapping("deleteUserHistory/{userId}")
+    @DeleteMapping("/deleteUserHistory/{userId}")
     public ResponseEntity<Map<String, Object>> deleteHistoryForUser(@PathVariable String userId) {
-        long deletedCount = historyService.deleteHistoryForUser(userId);
-
-        Map<String, Object> body = new HashMap<>();
-        body.put("message", "History deleted: ");
-        body.put("userId", userId);
-        body.put("deletedCount", deletedCount);
+        int deletedCount = historyService.deleteHistoryForUser(userId);
 
         if (deletedCount == 0) {
-            body.put("message", "No history found for user");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+            throw new ResourceNotFoundException("No history found for user " + userId);
         }
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("message", "History deleted");
+        body.put("userId", userId);
+        body.put("deletedCount", deletedCount);
 
         return ResponseEntity.ok(body);
     }
