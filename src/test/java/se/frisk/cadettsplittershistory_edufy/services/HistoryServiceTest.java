@@ -116,7 +116,7 @@ public class HistoryServiceTest {
     @Test
     void deleteHistory_returnsDeletedCount() {
         String userId = "8";
-        when(historyRepository.deleteByUserId(userId)).thenReturn(8L);
+        when(historyRepository.deleteByUserId(userId)).thenReturn(8);
 
         long result = historyService.deleteHistoryForUser(userId);
 

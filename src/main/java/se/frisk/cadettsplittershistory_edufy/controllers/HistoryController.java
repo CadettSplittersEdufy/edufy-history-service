@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/history")
+@RequestMapping("/history")
 public class HistoryController {
 
     private final HistoryService historyService;
@@ -56,9 +56,9 @@ public class HistoryController {
         return  historyService.getRecentHistory(userId, limit);
     }
 
-    @DeleteMapping("deleteUserHistory/{userId}")
+    @DeleteMapping("/deleteUserHistory/{userId}")
     public ResponseEntity<Map<String, Object>> deleteHistoryForUser(@PathVariable String userId) {
-        long deletedCount = historyService.deleteHistoryForUser(userId);
+        int deletedCount = historyService.deleteHistoryForUser(userId);
 
         if (deletedCount == 0) {
             throw new ResourceNotFoundException("No history found for user " + userId);

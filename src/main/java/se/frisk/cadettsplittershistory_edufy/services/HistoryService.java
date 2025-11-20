@@ -44,7 +44,7 @@ public class HistoryService {
     }
 
     @Transactional
-    public long deleteHistoryForUser(String userId) {
+    public int deleteHistoryForUser(String userId) {
         return historyRepository.deleteByUserId(userId);
     }
 }
