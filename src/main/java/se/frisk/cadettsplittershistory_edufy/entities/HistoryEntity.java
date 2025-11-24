@@ -5,8 +5,8 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "history", indexes = {
-        @Index(name = "idx_history_user_playedat", columnList = "userId, playedAt"),
-        @Index(name = "idx_history_item", columnList = "itemType, itemId")
+        @Index(name = "idx_history_user_playedat", columnList = "user_id, played_at"),
+        @Index(name = "idx_history_item", columnList = "item_type, item_id")
 })
 public class HistoryEntity {
 

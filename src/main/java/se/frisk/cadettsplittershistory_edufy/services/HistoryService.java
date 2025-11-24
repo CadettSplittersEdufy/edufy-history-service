@@ -3,6 +3,7 @@ package se.frisk.cadettsplittershistory_edufy.services;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import se.frisk.cadettsplittershistory_edufy.clients.UserClient;
 import se.frisk.cadettsplittershistory_edufy.entities.HistoryEntity;
 import se.frisk.cadettsplittershistory_edufy.repositories.HistoryRepository;
 
@@ -14,13 +15,27 @@ import java.util.List;
 public class HistoryService {
 
     private final HistoryRepository historyRepository;
+    private final UserClient userClient;
 
-    public HistoryService(HistoryRepository historyRepository) {
+    public HistoryService(HistoryRepository historyRepository, UserClient userClient) {
         this.historyRepository = historyRepository;
+        this.userClient = userClient;
     }
 
     @Transactional
     public HistoryEntity addHistory(String userId, HistoryEntity.ItemType itemType, Long itemId) {
+
+        Long userLongId;
+        try {
+            userLongId = Long.parseLong(userId);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid userId format: " + userId);
+        }
+
+        if (!userClient.userIsActive(userLongId)) {
+            throw new IllegalArgumentException("User " + userId + " not found or inactive");
+        }
+
         var entity = new HistoryEntity(userId, itemType, itemId, Instant.now());
         return historyRepository.save(entity);
     }

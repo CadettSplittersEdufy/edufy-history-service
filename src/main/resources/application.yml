@@ -6,6 +6,16 @@ spring:
     url: jdbc:mysql://db-history:3306/history?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: cadett-splitters
     password: cspwd
+
   jpa:
     hibernate:
       ddl-auto: update
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+  services:
+    user:
+      base-url: ${SERVICES_USER_BASE_URL:http://localhost:4515/users}

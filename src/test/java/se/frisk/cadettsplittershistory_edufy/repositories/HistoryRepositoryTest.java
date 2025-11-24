@@ -3,6 +3,7 @@ package se.frisk.cadettsplittershistory_edufy.repositories;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 import se.frisk.cadettsplittershistory_edufy.entities.HistoryEntity;
 import org.springframework.data.domain.PageRequest;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest(properties = "spring.sql.init.mode=never")
+@ActiveProfiles("test")
 public class HistoryRepositoryTest {
 
     @Autowired
