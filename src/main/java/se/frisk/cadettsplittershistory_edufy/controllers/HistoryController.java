@@ -1,6 +1,7 @@
 package se.frisk.cadettsplittershistory_edufy.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import se.frisk.cadettsplittershistory_edufy.exceptions.ResourceNotFoundException;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/history")
+@RequestMapping("/api/history")
 public class HistoryController {
 
     private final HistoryService historyService;
@@ -56,6 +57,7 @@ public class HistoryController {
         return  historyService.getRecentHistory(userId, limit);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteUserHistory/{userId}")
     public ResponseEntity<Map<String, Object>> deleteHistoryForUser(@PathVariable String userId) {
         int deletedCount = historyService.deleteHistoryForUser(userId);
