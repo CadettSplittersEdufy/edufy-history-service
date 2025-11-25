@@ -42,7 +42,7 @@ public class UserServiceAuthenticationProvider implements AuthenticationProvider
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
 
-        if ("admin".equalsIgnoreCase(user.getUsername())) {
+        if (user.isAdmin()) {
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
 
