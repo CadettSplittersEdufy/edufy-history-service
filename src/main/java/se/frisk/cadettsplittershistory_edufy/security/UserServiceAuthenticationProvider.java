@@ -42,7 +42,9 @@ public class UserServiceAuthenticationProvider implements AuthenticationProvider
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
 
-        if (user.isAdmin()) {
+        String role = (user.getRole() != null) ? user.getRole() : "edufy_USER";
+
+        if ("edufy_ADMIN".equalsIgnoreCase(role)) {
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
 
