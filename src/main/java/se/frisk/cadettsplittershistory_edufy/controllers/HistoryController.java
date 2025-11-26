@@ -58,7 +58,7 @@ public class HistoryController {
         return  historyService.getRecentHistory(userId, limit);
     }
 
-    @PreAuthorize("hasRole('edufy_ADMIN')")
+    @PreAuthorize("hasAuthority('edufy_ADMIN')")
     @DeleteMapping("/deleteUserHistory/{userId}")
     public ResponseEntity<Map<String, Object>> deleteHistoryForUser(@PathVariable String userId) {
         int deletedCount = historyService.deleteHistoryForUser(userId);
