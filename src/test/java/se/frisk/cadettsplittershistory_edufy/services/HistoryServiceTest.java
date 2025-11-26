@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.ActiveProfiles;
+import se.frisk.cadettsplittershistory_edufy.clients.UserClient;
 import se.frisk.cadettsplittershistory_edufy.entities.HistoryEntity;
 import se.frisk.cadettsplittershistory_edufy.repositories.HistoryRepository;
 
@@ -21,6 +22,9 @@ public class HistoryServiceTest {
 
     @Mock
     private HistoryRepository historyRepository;
+
+    @Mock
+    private UserClient userClient;
 
     @InjectMocks
     private HistoryService historyService;
@@ -124,5 +128,26 @@ public class HistoryServiceTest {
 
         assertEquals(8L, result);
         verify(historyRepository).deleteByUserId(userId);
+    }
+
+    @Test
+    void addHistory_throwsWhenUserIdInvalid() {
+        assertThrows(IllegalArgumentException.class, () ->
+                historyService.addHistory("invalid-id", HistoryEntity.ItemType.MUSIC, 10L));
+
+        verifyNoInteractions(historyRepository);
+    }
+
+    @Test
+    void addHistory_throwsWhenUserInactive() {
+        String userId = "5";
+        Long userLongId = 5L;
+        when(userClient.userIsActive(userLongId)).thenReturn(false);
+
+        assertThrows(IllegalArgumentException.class, () ->
+                historyService.addHistory(userId, HistoryEntity.ItemType.VIDEO, 77L));
+
+        verify(userClient).userIsActive(userLongId);
+        verifyNoInteractions(historyRepository);
     }
 }
