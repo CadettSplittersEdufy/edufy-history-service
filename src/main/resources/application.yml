@@ -1,5 +1,9 @@
 server:
   port: 4595
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
 
 spring:
   datasource:
@@ -11,11 +15,43 @@ spring:
     hibernate:
       ddl-auto: update
     defer-datasource-initialization: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
   sql:
     init:
       mode: always
 
-  services:
-    user:
-      base-url: ${SERVICES_USER_BASE_URL:http://localhost:4515/users}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/edufy-realm
+
+
+jwt:
+  auth:
+     converter:
+       resource-id:
+          name: edufy-gateway-service
+       principle-attribute: preferred_username
+
+logging:
+  level:
+    org:
+      springframework.cloud.gateway: DEBUG
+      springframework.cloud.gateway.route: DEBUG
+      springframework.security: DEBUG
+      springframework.security.oauth2: DEBUG
+      springframework.security.jwt: DEBUG
+      springframework.security.oauth2.jwt: DEBUG
+
+    root: DEBUG
+    org.springframework.web: DEBUG
+    se.frisk.cadettsplittershistory_edufy: DEBUG
+
+
+
+
+
