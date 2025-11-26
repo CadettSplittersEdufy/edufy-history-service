@@ -1,5 +1,5 @@
 package se.frisk.cadettsplittershistory_edufy.security;
-
+/*
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -59,4 +59,4 @@ public class UserServiceAuthenticationProvider implements AuthenticationProvider
     public boolean supports(Class<?> authentication) {
         return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
     }
-}
+}*/

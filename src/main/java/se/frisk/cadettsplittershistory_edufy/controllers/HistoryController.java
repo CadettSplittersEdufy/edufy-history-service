@@ -9,13 +9,13 @@ import se.frisk.cadettsplittershistory_edufy.dto.AddHistoryResponse;
 import se.frisk.cadettsplittershistory_edufy.entities.HistoryEntity;
 import se.frisk.cadettsplittershistory_edufy.services.HistoryService;
 import se.frisk.cadettsplittershistory_edufy.dto.AddHistoryRequest;
-
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
+@PreAuthorize("hasAnyAuthority('edufy_USER','edufy_ADMIN')")
 @RequestMapping("/api/history")
 public class HistoryController {
 
@@ -24,6 +24,7 @@ public class HistoryController {
 
     @GetMapping("/test")
     public String test() { return "History service upp and running!"; }
+
 
     @PostMapping("/addHistory")
     public ResponseEntity<AddHistoryResponse> addHistory(@RequestBody @Valid AddHistoryRequest req) {
@@ -57,7 +58,7 @@ public class HistoryController {
         return  historyService.getRecentHistory(userId, limit);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('edufy_ADMIN')")
     @DeleteMapping("/deleteUserHistory/{userId}")
     public ResponseEntity<Map<String, Object>> deleteHistoryForUser(@PathVariable String userId) {
         int deletedCount = historyService.deleteHistoryForUser(userId);

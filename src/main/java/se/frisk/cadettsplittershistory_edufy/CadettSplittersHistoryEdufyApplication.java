@@ -6,8 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CadettSplittersHistoryEdufyApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(CadettSplittersHistoryEdufyApplication.class, args);
-    }
+    public static void main(String[] args)  {
+            SpringApplication.run(CadettSplittersHistoryEdufyApplication.class, args);
 
+    }
 }
+
+
